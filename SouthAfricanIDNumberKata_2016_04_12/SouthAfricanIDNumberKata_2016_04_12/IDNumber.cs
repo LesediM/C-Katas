@@ -23,7 +23,6 @@ namespace SouthAfricanIDNumberKata_2016_04_12
         public bool ValidateID(string idnumber)
         {
             var oddpositionnumbertotal = AddOddPositionNumbers(idnumber);
-            var evenpositionnumberx2total = GetEvenPositionNumbersThenMultipyBy2(idnumber);
             var evenpositionnumbertotal = AddEvenPositionNumbers(idnumber);
             var sumofoddandeven = evenpositionnumbertotal + oddpositionnumbertotal;
             var subtractednumber = 10 - GetLastDigitOfNumber(sumofoddandeven);
@@ -46,7 +45,7 @@ namespace SouthAfricanIDNumberKata_2016_04_12
             {
                 oddpositionnumbers.Add(idnumber[i].ToString());
             }
-            return oddpositionnumbers.Sum(x => Convert.ToInt32(x.ToString()));
+            return oddpositionnumbers.Sum(x => Convert.ToInt32(x));
         }
 
         public int GetEvenPositionNumbersThenMultipyBy2(string idnumber)

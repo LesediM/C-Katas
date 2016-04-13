@@ -9,21 +9,26 @@ namespace SouthAfricanIDNumberKata_2016_04_12
         [Test]
         public void ExtractIDParts_GivenYY80_ShouldReturnDateOfBirthGenderAndCitizenship()
         {
+            //---------------Set up test pack-------------------
+            var idNumber = CreateIDNumber();
             var expected = "01-01-1980, Male SA";
             var idnumber = "8001015009087";
+            //---------------Assert Precondition----------------
 
-            var results = CreateIDNumber().ExtractIDParts(idnumber);
-
+            //---------------Execute Test ----------------------
+            var results = idNumber.ExtractIDParts(idnumber);
+            //---------------Test Result -----------------------
             Assert.AreEqual(expected, results);
         }
 
         [Test]
         public void ExtractIDParts_GivenYY01_ShouldReturnDateOfBirthGenderAndCitizenship()
         {
+            var idNumber = CreateIDNumber();
             var expected = "01-01-2001, Male SA";
             var idnumber = "0101015009087";
 
-            var results = CreateIDNumber().ExtractIDParts(idnumber);
+            var results = idNumber.ExtractIDParts(idnumber);
 
             Assert.AreEqual(expected, results);
         }
