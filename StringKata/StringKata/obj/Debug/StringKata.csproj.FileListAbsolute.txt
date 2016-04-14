@@ -1,7 +1,0 @@
-c:\users\lesedi\documents\visual studio 2015\Projects\StringKata\StringKata\bin\Debug\StringKata.dll
-c:\users\lesedi\documents\visual studio 2015\Projects\StringKata\StringKata\bin\Debug\StringKata.pdb
-c:\users\lesedi\documents\visual studio 2015\Projects\StringKata\StringKata\bin\Debug\nunit.framework.dll
-c:\users\lesedi\documents\visual studio 2015\Projects\StringKata\StringKata\bin\Debug\nunit.framework.xml
-c:\users\lesedi\documents\visual studio 2015\Projects\StringKata\StringKata\obj\Debug\StringKata.csprojResolveAssemblyReference.cache
-c:\users\lesedi\documents\visual studio 2015\Projects\StringKata\StringKata\obj\Debug\StringKata.dll
-c:\users\lesedi\documents\visual studio 2015\Projects\StringKata\StringKata\obj\Debug\StringKata.pdb
