@@ -5,14 +5,14 @@ using NUnit.Framework;
 
 namespace SouthAfricanIDNumberKata_2016_04_18
 {
-    public class IDNumberValidator
+    public class IdNumberValidator
     {
-        public string ExtractIDParts(string idnumber)
+        public string ExtractIdParts(string idnumber)
         {
-            var dateofbirth = ExtractDateOfBirth(idnumber);
+            var dateOfBirth = ExtractDateOfBirth(idnumber);
             var gender = ExtractGender(idnumber);
             var citizenship = ExtractCitizenship(idnumber);
-            return $"{dateofbirth}, {gender} {citizenship}";
+            return $"{dateOfBirth}, {gender} {citizenship}";
         }
 
         public string ExtractDateOfBirth(string idnumber)
@@ -46,10 +46,10 @@ namespace SouthAfricanIDNumberKata_2016_04_18
             return oddpositionnumbers.Sum(x => Convert.ToInt32(x.ToString()));
         }
 
-        private List<char> GetNumbersFromIDNumber(string idnumber, int startindex)
+        private IEnumerable<char> GetNumbersFromIDNumber(string idnumber, int startindex)
         {
             var numbers = new List<char>();
-            for (int i = startindex; i < idnumber.Length - 1; i += 2)
+            for (var i = startindex; i < idnumber.Length - 1; i += 2)
                 numbers.Add(idnumber[i]);
             return numbers;
         }
@@ -65,11 +65,11 @@ namespace SouthAfricanIDNumberKata_2016_04_18
             return GetEvenPositionNumbersSumX2(idnumber).ToString().Sum(x => Convert.ToInt32(x.ToString()));
         }
 
-        public bool ValidateID(string idnumber)
+        public bool ValidateId(string idnumber)
         {
             var sumoddpositionnumbers = SumOddPositionNumbers(idnumber);
-            var sumevenpositionnumbers = SumEvenPositionResults(idnumber);
-            var sumnumbers = sumoddpositionnumbers + sumevenpositionnumbers;
+            var sumeVenPositioNumbers = SumEvenPositionResults(idnumber);
+            var sumnumbers = sumoddpositionnumbers + sumeVenPositioNumbers;
             var tally = (10 - (Convert.ToInt32(sumnumbers.ToString().Last().ToString()))).ToString();
             var controlnumber = idnumber.Last().ToString();
 

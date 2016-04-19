@@ -11,11 +11,11 @@ namespace SouthAfricanIDNumberKata_2016_04_18
             //---------------Set up test pack-------------------
             var idnumber = "8001015009087";
             var expected = "01-01-1980, Male SA";
-            var idnumbervalidator = new IDNumberValidator();
+            var idnumbervalidator = CreateIdnumbervalidator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
-            var results = idnumbervalidator.ExtractIDParts(idnumber);
+            var results = idnumbervalidator.ExtractIdParts(idnumber);
             //---------------Test Result -----------------------
             Assert.AreEqual(expected, results);
         }
@@ -26,7 +26,7 @@ namespace SouthAfricanIDNumberKata_2016_04_18
             //---------------Set up test pack-------------------
             var idnumber = "8001015009087";
             var expected = "01-01-1980";
-            var idnumbervalidator = new IDNumberValidator();
+            var idnumbervalidator = CreateIdnumbervalidator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
@@ -41,7 +41,7 @@ namespace SouthAfricanIDNumberKata_2016_04_18
             //---------------Set up test pack-------------------
             var idnumber = "8001015009087";
             var expected = "Male";
-            var idnumbervalidator = new IDNumberValidator();
+            var idnumbervalidator = CreateIdnumbervalidator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
@@ -56,7 +56,7 @@ namespace SouthAfricanIDNumberKata_2016_04_18
             //---------------Set up test pack-------------------
             var idnumber = "8001015009087";
             var expected = "SA";
-            var idnumbervalidator = new IDNumberValidator();
+            var idnumbervalidator = CreateIdnumbervalidator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
@@ -71,7 +71,7 @@ namespace SouthAfricanIDNumberKata_2016_04_18
             //---------------Set up test pack-------------------
             var idnumber = "8001015009087";
             var expected = 13;
-            var idnumbervalidator = new IDNumberValidator();
+            var idnumbervalidator = CreateIdnumbervalidator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
@@ -86,7 +86,7 @@ namespace SouthAfricanIDNumberKata_2016_04_18
             //---------------Set up test pack-------------------
             var idnumber = "8001015009087";
             var expected = 22196;
-            var idnumbervalidator = new IDNumberValidator();
+            var idnumbervalidator = CreateIdnumbervalidator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
@@ -101,7 +101,7 @@ namespace SouthAfricanIDNumberKata_2016_04_18
             //---------------Set up test pack-------------------
             var idnumber = "8001015009087";
             var expected = 20;
-            var idnumbervalidator = new IDNumberValidator();
+            var idnumbervalidator = CreateIdnumbervalidator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
@@ -115,11 +115,11 @@ namespace SouthAfricanIDNumberKata_2016_04_18
         {
             //---------------Set up test pack-------------------
             var idnumber = "8001015009087";
-            var idnumbervalidator = new IDNumberValidator();
+            var idnumbervalidator = CreateIdnumbervalidator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
-            var results = idnumbervalidator.ValidateID(idnumber);
+            var results = idnumbervalidator.ValidateId(idnumber);
             //---------------Test Result -----------------------
             Assert.IsTrue(results);
         }
@@ -129,13 +129,18 @@ namespace SouthAfricanIDNumberKata_2016_04_18
         {
             //---------------Set up test pack-------------------
             var idnumber = "8013155009082";
-            var idnumbervalidator = new IDNumberValidator();
+            var idnumbervalidator = CreateIdnumbervalidator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
-            var results = idnumbervalidator.ValidateID(idnumber);
+            var results = idnumbervalidator.ValidateId(idnumber);
             //---------------Test Result -----------------------
             Assert.IsTrue(results);
+        }
+
+        private static IdNumberValidator CreateIdnumbervalidator()
+        {
+            return new IdNumberValidator();
         }
     }
 }

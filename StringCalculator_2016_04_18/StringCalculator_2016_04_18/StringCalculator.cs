@@ -5,7 +5,7 @@ using NUnit.Framework;
 
 namespace StringCalculator_2016_04_18
 {
-    public class stringcalculator
+    public class StringCalculator
     {
         public int Add(string numbers)
         {
@@ -21,8 +21,8 @@ namespace StringCalculator_2016_04_18
         private int SumNumberList(string[] numberlist)
         {
             return numberlist
-                .Where(x => Convert.ToInt32(x) <= 1000)
-                .Sum(x => string.IsNullOrEmpty(x) ? 0 : Convert.ToInt32(x.ToString()));
+                .Where(x => int.Parse(x) <= 1000)
+                .Sum(x => string.IsNullOrEmpty(x) ? 0 : int.Parse(x));
         }
 
         private List<char> GetDelimiters(ref string numbers)
@@ -38,7 +38,7 @@ namespace StringCalculator_2016_04_18
 
         private void NegativeNumberCheck(string[] numberlist)
         {
-            var negativelist = numberlist.Where(x => Convert.ToInt32(x) < 0);
+            var negativelist = numberlist.Where(x => int.Parse(x) < 0);
             if (negativelist.Any())
                 throw new ArgumentException("negatives not allowed: " + string.Join(",", negativelist.ToArray()));
         }

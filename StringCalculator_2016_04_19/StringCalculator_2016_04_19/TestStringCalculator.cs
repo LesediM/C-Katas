@@ -1,196 +1,192 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace StringCalculator_2016_04_18
+namespace StringCalculator_2016_04_19
 {
     [TestFixture]
     public class TestStringCalculator
-
     {
         [Test]
-        public void Add_GivenEmptyString_ShouldReturn0()
+        public void Add_GivenEmptyString_ShouldReturnZero()
         {
             //---------------Set up test pack-------------------
             var expected = 0;
             var numbers = "";
-            var stringcalculator = CreateStringcalculator();
+            var stringCalculator = CreateStringCalculator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
-            var results = stringcalculator.Add(numbers);
+            var results = stringCalculator.Add(numbers);
             //---------------Test Result -----------------------
             Assert.AreEqual(expected, results);
         }
 
         [Test]
-        public void Add_GivenSingleNumber_ShouldReturnSingleNumber()
+        public void Add_GivenStringWithOneNumber_ShouldReturnThatNumber()
         {
             //---------------Set up test pack-------------------
             var expected = 1;
             var numbers = "1";
-            var stringcalculator = CreateStringcalculator();
+            var stringCalculator = CreateStringCalculator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
-            var results = stringcalculator.Add(numbers);
-            //---------------Test Result -----------------------
-            Assert.AreEqual(expected, results);
-        }
-
-
-        [Test]
-        public void Add_GivenLargeSingleNumber_ShouldReturnLargeSingleNumber()
-        {
-            //---------------Set up test pack-------------------
-            var expected = 120;
-            var numbers = "120";
-            var stringcalculator = CreateStringcalculator();
-            //---------------Assert Precondition----------------
-
-            //---------------Execute Test ----------------------
-            var results = stringcalculator.Add(numbers);
+            var results = stringCalculator.Add(numbers);
             //---------------Test Result -----------------------
             Assert.AreEqual(expected, results);
         }
 
         [Test]
-        public void Add_GivenTwoNumbers_ShouldReturnSum()
+        public void Add_GivenStringWithTwoNumber_ShouldReturnTheSum()
         {
             //---------------Set up test pack-------------------
             var expected = 3;
             var numbers = "1,2";
-            var stringcalculator = CreateStringcalculator();
+            var stringCalculator = CreateStringCalculator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
-            var results = stringcalculator.Add(numbers);
+            var results = stringCalculator.Add(numbers);
             //---------------Test Result -----------------------
             Assert.AreEqual(expected, results);
         }
 
         [Test]
-        public void Add_GivenNumberStringWithNewlines_ShouldReturnSum()
+        public void Add_GivenStringWithMultipleNumbers_ShouldReturnTheSum()
+        {
+            //---------------Set up test pack-------------------
+            var expected = 6;
+            var numbers = "1,2,3";
+            var stringCalculator = CreateStringCalculator();
+            //---------------Assert Precondition----------------
+
+            //---------------Execute Test ----------------------
+            var results = stringCalculator.Add(numbers);
+            //---------------Test Result -----------------------
+            Assert.AreEqual(expected, results);
+        }
+
+        [Test]
+        public void Add_GivenStringWithNewlineCharacters_ShouldReturnTheSum()
         {
             //---------------Set up test pack-------------------
             var expected = 6;
             var numbers = "1\n2,3";
-            var stringcalculator = CreateStringcalculator();
+            var stringCalculator = CreateStringCalculator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
-            var results = stringcalculator.Add(numbers);
+            var results = stringCalculator.Add(numbers);
             //---------------Test Result -----------------------
             Assert.AreEqual(expected, results);
         }
 
         [Test]
-        public void Add_GivenNumberStringWithNewDelimiterAndline_ShouldReturnSum()
+        public void Add_GivenStringWithDifferentDelimiter_ShouldReturnTheSum()
         {
             //---------------Set up test pack-------------------
             var expected = 3;
             var numbers = "//;\n1;2";
-            var stringcalculator = CreateStringcalculator();
+            var stringCalculator = CreateStringCalculator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
-            var results = stringcalculator.Add(numbers);
+            var results = stringCalculator.Add(numbers);
             //---------------Test Result -----------------------
             Assert.AreEqual(expected, results);
         }
 
         [Test]
-        public void Add_GivenNumberStringWithNegative_ShouldThrowArgException()
+        public void Add_GivenStringWithNegativeNumber_ShouldThrowNegativeNotAllowedException()
         {
             //---------------Set up test pack-------------------
-            var expected = "negatives not allowed: -2";
-            var numbers = "1,-2,3";
-            var stringcalculator = CreateStringcalculator();
+            var expected = "negative numbers not allowed: -2";
+            var numbers = "1,-2";
+            var stringCalculator = CreateStringCalculator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
-            var ex = Assert.Throws<ArgumentException>(() => stringcalculator.Add(numbers));
+            var results = Assert.Throws<ArgumentException>(() => stringCalculator.Add(numbers));
             //---------------Test Result -----------------------
-
-            Assert.AreEqual(expected, ex.Message);
+            Assert.AreEqual(expected, results.Message);
         }
 
         [Test]
-        public void Add_GivenNumberStringWithMultipleNegativeNumbers_ShouldThrowArgException()
+        public void Add_GivenStringWithNumberGreaterThen1000_ShouldReturnIgnoreNumberAbove1000()
         {
             //---------------Set up test pack-------------------
-            var expected = "negatives not allowed: -1,-2";
-            var numbers = "-1,-2,3";
-            var stringcalculator = CreateStringcalculator();
+            var expected = 3;
+            var numbers = "1,2,1001";
+            var stringCalculator = CreateStringCalculator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
-            var ex = Assert.Throws<ArgumentException>(() => stringcalculator.Add(numbers));
-            //---------------Test Result -----------------------
-
-            Assert.AreEqual(expected, ex.Message);
-        }
-
-        [Test]
-        public void Add_GivenNumberStringWithANumberGreaterThan1000_ShouldReturn6()
-        {
-            //---------------Set up test pack-------------------
-            var expected = 6;
-            var numbers = "1,2,3,1001";
-            var stringcalculator = CreateStringcalculator();
-            //---------------Assert Precondition----------------
-
-            //---------------Execute Test ----------------------
-            var results = stringcalculator.Add(numbers);
+            var results = stringCalculator.Add(numbers);
             //---------------Test Result -----------------------
             Assert.AreEqual(expected, results);
         }
 
         [Test]
-        public void Add_GivenNumberStringWithANumberLessAndEqualTo1000_ShouldReturn1006()
+        public void Add_GivenStringWithNumberLessThenEqualTo1000_ShouldReturnSum()
         {
             //---------------Set up test pack-------------------
-            var expected = 1006;
-            var numbers = "1,2,3,1000";
-            var stringcalculator = CreateStringcalculator();
+            var expected = 1003;
+            var numbers = "1,2,1000";
+            var stringCalculator = CreateStringCalculator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
-            var results = stringcalculator.Add(numbers);
+            var results = stringCalculator.Add(numbers);
             //---------------Test Result -----------------------
             Assert.AreEqual(expected, results);
         }
 
         [Test]
-        public void Add_GivenNumberStringWithDelimtersOfAnyLength_ShouldReturn6()
+        public void Add_GivenStringWithLongLengthDelimiter_ShouldReturnSum()
         {
             //---------------Set up test pack-------------------
             var expected = 6;
             var numbers = "//[***]\n1***2***3";
-            var stringcalculator = CreateStringcalculator();
+            var stringCalculator = CreateStringCalculator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
-            var results = stringcalculator.Add(numbers);
+            var results = stringCalculator.Add(numbers);
             //---------------Test Result -----------------------
             Assert.AreEqual(expected, results);
         }
 
         [Test]
-        public void Add_GivenNumberStringWithManyDelimiters_ShouldReturn6()
+        public void Add_GivenStringWithMultipleDelimiters_ShouldReturnSum()
         {
             //---------------Set up test pack-------------------
             var expected = 6;
-            var numbers = "//[****][%]1****2%3";
-            var stringcalculator = CreateStringcalculator();
+            var numbers = "//[*][%]\n1*2%3";
+            var stringCalculator = CreateStringCalculator();
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
-            var results = stringcalculator.Add(numbers);
+            var results = stringCalculator.Add(numbers);
             //---------------Test Result -----------------------
             Assert.AreEqual(expected, results);
         }
 
-        private static StringCalculator CreateStringcalculator()
+        [Test]
+        public void Add_GivenStringWithMultipleDelimitersAndOneLongDelimiter_ShouldReturnSum()
+        {
+            //---------------Set up test pack-------------------
+            var expected = 6;
+            var numbers = "//[****][%]\n1***2%3";
+            var stringCalculator = CreateStringCalculator();
+            //---------------Assert Precondition----------------
+
+            //---------------Execute Test ----------------------
+            var results = stringCalculator.Add(numbers);
+            //---------------Test Result -----------------------
+            Assert.AreEqual(expected, results);
+        }
+
+        private StringCalculator CreateStringCalculator()
         {
             return new StringCalculator();
         }
