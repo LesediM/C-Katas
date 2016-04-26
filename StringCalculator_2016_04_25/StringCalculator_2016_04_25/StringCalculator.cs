@@ -10,7 +10,7 @@ namespace StringCalculator_2016_04_25
         {
             if (string.IsNullOrEmpty(numbers))
                 return 0;
-            
+
             if (numbers.StartsWith("//"))
                 numbers = ReplaceDelimitersWithDefault(numbers);
 
@@ -23,11 +23,12 @@ namespace StringCalculator_2016_04_25
 
         private string ReplaceDelimitersWithDefault(string numbers)
         {
-            var splitNumbersAndDelimiters = numbers.Replace("//", "").Split('\n');
+            var splitNumbersAndDelimiters = numbers.Split('\n');
             var delimiterString = splitNumbersAndDelimiters[0];
             var numberString = splitNumbersAndDelimiters[1];
-            foreach (var delimiterPart in delimiterString.Split(new[] { '[',']' }, StringSplitOptions.RemoveEmptyEntries))
+            foreach (var delimiterPart in delimiterString.Split(new[] { '/', '[', ']' }, StringSplitOptions.RemoveEmptyEntries))
             {
+                Console.WriteLine(delimiterPart);
                 numberString = numberString.Replace(delimiterPart, ",");
             }
             return numberString;
