@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 
 namespace RomanNumeralsKata_2016_07_18
 {
@@ -16,6 +14,11 @@ namespace RomanNumeralsKata_2016_07_18
             return GetSum(numeral);
         }
 
+        private static void ThrowArgumentException(string message)
+        {
+            throw new ArgumentException(message);
+        }
+
         private static void CheckForStrangeNumerals(string numeral)
         {
             var romanNumerals = new[] { "I", "V", "X", "L", "C", "D", "M" };
@@ -23,7 +26,7 @@ namespace RomanNumeralsKata_2016_07_18
             if (strangeNumerals.Any())
             {
                 var message = "Numerals cannot be rendered: " + string.Join(",", strangeNumerals.ToArray());
-                throw new ArgumentException(message);
+                ThrowArgumentException(message);
             }
         }
 
@@ -31,7 +34,10 @@ namespace RomanNumeralsKata_2016_07_18
         {
             var sum = numeral.Sum(x => GetDigit(x.ToString()));
             if (sum > 3000)
-                throw new ArgumentException("Numerals cannot be above 3000");
+            {
+                var message = "Numerals cannot be above 3000";
+                ThrowArgumentException(message);
+            }
             return sum;
         }
 
@@ -42,7 +48,7 @@ namespace RomanNumeralsKata_2016_07_18
             if (nonRepeatViolation.Any())
             {
                 var message = "Numerals cannot be repeated: " + string.Join(",", nonRepeatViolation.ToArray());
-                throw new ArgumentException(message);
+                ThrowArgumentException(message);
             }
         }
 
@@ -53,7 +59,7 @@ namespace RomanNumeralsKata_2016_07_18
             if (repeatLimitViolation.Any())
             {
                 var message = "Numerals cannot be repeated more than 3 times: " + string.Join(",", repeatLimitViolation.ToArray());
-                throw new ArgumentException(message);
+                ThrowArgumentException(message);
             }
         }
 
